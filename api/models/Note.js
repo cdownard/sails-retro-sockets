@@ -1,8 +1,7 @@
 /**
- * Board.js
+ * Note.js
  *
- * @description :: A board contains many post its for a retrospective. It can
-                   have many users
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
@@ -11,13 +10,15 @@
 module.exports = {
 
   attributes: {
-    title: { type: 'string', unique: true },
+    name: { type: 'string' },
+    message: { type: 'string' },
     guid: { type: 'string', unique: true },
     // Relationships
-    notes: { collection: 'note', via: 'board' },
+    board: { model: 'board' }
   },
 
 
+  // Lifecycle
   beforeCreate(values, cb) {
     values.guid = Guid.raw()
     cb()
